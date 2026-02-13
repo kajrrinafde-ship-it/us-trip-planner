@@ -10,8 +10,8 @@ let locations = [
         id: 'california-utah',
         name: 'California / Utah',
         type: 'trip',
-        dates: 'Mar 5–15',
-        x: 160, y: 265,
+        dates: 'Mar 13–16',
+        x: 275, y: 275,
         supSpot: true,
         atSection: null,
         items: [
@@ -95,7 +95,7 @@ let locations = [
         name: 'Atlanta, GA',
         type: 'work',
         dates: 'Mar 16–20',
-        x: 600, y: 320,
+        x: 675, y: 345,
         supSpot: false,
         atSection: 'Springer Mountain — Southern terminus of the AT. Day hike to summit (8.8 mi roundtrip via Approach Trail). Start point for all northbound thru-hikers.',
         items: [
@@ -137,7 +137,7 @@ let locations = [
         name: 'Chicago, IL',
         type: 'work',
         dates: 'Mar 17+',
-        x: 545, y: 195,
+        x: 570, y: 145,
         supSpot: true,
         atSection: null,
         items: [
@@ -188,7 +188,7 @@ let locations = [
         name: 'Teton Range',
         type: 'wishlist',
         dates: 'Mar 20–22 (TBD)',
-        x: 285, y: 155,
+        x: 268, y: 155,
         supSpot: false,
         atSection: null,
         items: [
@@ -277,7 +277,7 @@ let locations = [
         name: 'Captiva Island',
         type: 'wishlist',
         dates: 'Mar 24–26 (TBD)',
-        x: 640, y: 400,
+        x: 660, y: 435,
         supSpot: false,
         atSection: null,
         items: [
@@ -319,7 +319,7 @@ let locations = [
         name: 'San Juan Islands',
         type: 'wishlist',
         dates: 'Mar 26–28 (TBD)',
-        x: 175, y: 95,
+        x: 148, y: 68,
         supSpot: true,
         atSection: null,
         items: [
@@ -361,7 +361,7 @@ let locations = [
         name: 'New York',
         type: 'wishlist',
         dates: 'Mar 28–30 (TBD)',
-        x: 735, y: 190,
+        x: 748, y: 160,
         supSpot: true,
         atSection: 'Bear Mountain Section — Scenic AT section 1hr from NYC. The AT crosses the Hudson River here. Day hike to Perkins Memorial Tower for panoramic views.',
         items: [
@@ -412,7 +412,7 @@ let locations = [
         name: 'Dallas, TX',
         type: 'wishlist',
         dates: 'Mar 30–31 (TBD)',
-        x: 430, y: 345,
+        x: 448, y: 340,
         supSpot: false,
         atSection: null,
         items: [
@@ -462,7 +462,7 @@ let locations = [
         name: 'Pittsburgh',
         type: 'friend',
         dates: 'Flexible (stay with Nishant)',
-        x: 680, y: 215,
+        x: 675, y: 195,
         supSpot: false,
         atSection: 'Harpers Ferry Section (MD/WV border) — AT crosses the Potomac River. "Psychological midpoint" of the trail. ~4hr drive from Pittsburgh.',
         items: [
@@ -503,8 +503,8 @@ let locations = [
         id: 'california-friends',
         name: 'California (Mercy & Moni)',
         type: 'friend',
-        dates: 'Within Mar 5–15',
-        x: 130, y: 295,
+        dates: 'Within Mar 13–16',
+        x: 155, y: 315,
         supSpot: true,
         atSection: null,
         items: [
@@ -636,6 +636,63 @@ function renderMap() {
         statesGroup.appendChild(path);
     });
     svg.appendChild(statesGroup);
+
+    // ─── City markers (LA, Las Vegas) ────────────────────────────────────
+    const citiesGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    citiesGroup.id = 'city-markers';
+    const cities = [
+        { name: 'Los Angeles', short: 'LA', x: 155, y: 310 },
+        { name: 'Las Vegas', short: 'LV', x: 218, y: 260 }
+    ];
+    cities.forEach(city => {
+        const diamond = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+        const s = 5;
+        diamond.setAttribute('points', `${city.x},${city.y - s} ${city.x + s},${city.y} ${city.x},${city.y + s} ${city.x - s},${city.y}`);
+        diamond.setAttribute('class', 'city-marker');
+        citiesGroup.appendChild(diamond);
+
+        const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        label.setAttribute('x', city.x);
+        label.setAttribute('y', city.y - 9);
+        label.setAttribute('class', 'city-label');
+        label.textContent = city.short;
+        citiesGroup.appendChild(label);
+    });
+    svg.appendChild(citiesGroup);
+
+    // ─── Climbing spot markers ───────────────────────────────────────────
+    const climbGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    climbGroup.id = 'climb-markers';
+    const climbSpots = [
+        { name: 'Joshua Tree', x: 198, y: 300, distLA: '130mi / 2.5h', distLV: '200mi / 3h' },
+        { name: 'Bishop', x: 175, y: 245, distLA: '270mi / 4.5h', distLV: '260mi / 4h' },
+        { name: 'Red Rocks', x: 220, y: 255, distLA: '270mi / 4h', distLV: '20mi / 30min' }
+    ];
+    climbSpots.forEach(spot => {
+        // Triangle marker
+        const tri = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+        const s = 4;
+        tri.setAttribute('points', `${spot.x},${spot.y - s} ${spot.x + s},${spot.y + s} ${spot.x - s},${spot.y + s}`);
+        tri.setAttribute('class', 'climb-marker');
+        climbGroup.appendChild(tri);
+
+        // Spot name
+        const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        label.setAttribute('x', spot.x);
+        label.setAttribute('y', spot.y - 7);
+        label.setAttribute('class', 'climb-label');
+        label.textContent = '🧗 ' + spot.name;
+        climbGroup.appendChild(label);
+
+        // Distance info
+        const dist = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        dist.setAttribute('x', spot.x);
+        dist.setAttribute('y', spot.y + s + 8);
+        dist.setAttribute('class', 'climb-distance');
+        dist.textContent = `LA: ${spot.distLA}  •  LV: ${spot.distLV}`;
+        climbGroup.appendChild(dist);
+    });
+    svg.appendChild(climbGroup);
 
     // Appalachian Trail
     const atGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
@@ -1180,7 +1237,7 @@ function initTabs() {
 // ─── Countdown ───────────────────────────────────────────────────────────
 
 function initCountdown() {
-    const tripDate = new Date('March 5, 2026 00:00:00').getTime();
+    const tripDate = new Date('March 13, 2026 00:00:00').getTime();
     function update() {
         const dist = tripDate - Date.now();
         if (dist < 0) {

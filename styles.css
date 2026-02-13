@@ -163,13 +163,51 @@ body {
 
 .state-path {
     fill: var(--green-dark);
-    stroke: rgba(78, 203, 138, 0.12);
-    stroke-width: 0.8;
+    stroke: rgba(78, 203, 138, 0.35);
+    stroke-width: 1.2;
     transition: fill var(--transition);
 }
 
 .state-path:hover {
     fill: rgba(45, 107, 79, 0.5);
+    stroke: rgba(78, 203, 138, 0.6);
+}
+
+/* City markers (LA, LV) */
+.city-marker {
+    fill: rgba(255, 255, 255, 0.6);
+    stroke: rgba(255, 255, 255, 0.9);
+    stroke-width: 1;
+}
+
+.city-label {
+    fill: rgba(255, 255, 255, 0.85);
+    font-size: 7px;
+    font-weight: 600;
+    font-family: var(--font);
+    text-anchor: middle;
+}
+
+/* Climbing spot markers */
+.climb-marker {
+    fill: #ff6b35;
+    stroke: rgba(255, 107, 53, 0.5);
+    stroke-width: 1;
+}
+
+.climb-label {
+    fill: #ff9b70;
+    font-size: 5.5px;
+    font-weight: 500;
+    font-family: var(--font);
+    text-anchor: middle;
+}
+
+.climb-distance {
+    fill: rgba(255, 255, 255, 0.45);
+    font-size: 4.5px;
+    font-family: var(--font);
+    text-anchor: middle;
 }
 
 .at-path {
