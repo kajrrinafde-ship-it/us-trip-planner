@@ -693,28 +693,6 @@ function renderMap() {
     });
     svg.appendChild(statesGroup);
 
-    // ─── City markers (LA, Las Vegas) ────────────────────────────────────
-    const citiesGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-    citiesGroup.id = 'city-markers';
-    const cities = [
-        { name: 'Los Angeles', short: 'LA', x: 155, y: 310 },
-        { name: 'Las Vegas', short: 'LV', x: 218, y: 260 }
-    ];
-    cities.forEach(city => {
-        const diamond = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
-        const s = 5;
-        diamond.setAttribute('points', `${city.x},${city.y - s} ${city.x + s},${city.y} ${city.x},${city.y + s} ${city.x - s},${city.y}`);
-        diamond.setAttribute('class', 'city-marker');
-        citiesGroup.appendChild(diamond);
-
-        const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        label.setAttribute('x', city.x);
-        label.setAttribute('y', city.y - 9);
-        label.setAttribute('class', 'city-label');
-        label.textContent = city.short;
-        citiesGroup.appendChild(label);
-    });
-    svg.appendChild(citiesGroup);
 
     // ─── Climbing spot markers ───────────────────────────────────────────
     const climbGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
