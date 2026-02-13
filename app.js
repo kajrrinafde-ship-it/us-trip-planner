@@ -7,11 +7,11 @@
 
 let locations = [
     {
-        id: 'california-utah',
-        name: 'California / Utah',
+        id: 'california',
+        name: 'California',
         type: 'trip',
         dates: 'Mar 13–16',
-        x: 275, y: 275,
+        x: 148, y: 295,
         supSpot: true,
         atSection: null,
         items: [
@@ -37,10 +37,10 @@ let locations = [
                 link: 'https://www.amtrak.com/',
                 type: 'logistics'
             },
-            { icon: '🏠', label: 'Accommodation (10 nights)', cost: '₹15,000', detail: 'Hostel in Joshua Tree / Airbnb near Bishop', type: 'logistics' },
+            { icon: '🏠', label: 'Accommodation (5 nights)', cost: '₹8,000', detail: 'Hostel in Joshua Tree / Airbnb near Bishop', type: 'logistics' },
             {
                 icon: '🧗', label: 'Rock Climbing — Joshua Tree',
-                detail: 'World-class outdoor bouldering & sport climbing. Hidden Valley, Intersection Rock, Barker Dam area.',
+                detail: 'World-class outdoor bouldering & sport climbing. Hidden Valley, Intersection Rock, Barker Dam area. ~130mi / 2.5h from LA.',
                 cost: '₹2,000 (gear rental)',
                 image: 'https://images.unsplash.com/photo-1522163182402-834f871fd851?w=400&h=200&fit=crop',
                 link: 'https://www.nps.gov/jotr/planyourvisit/climbing.htm',
@@ -48,7 +48,7 @@ let locations = [
             },
             {
                 icon: '🧗', label: 'Rock Climbing — Bishop Buttermilks',
-                detail: 'Legendary bouldering area with the Mandala, Buttermilker, and Grandma Peabody.',
+                detail: 'Legendary bouldering area with the Mandala, Buttermilker, and Grandma Peabody. ~270mi / 4.5h from LA.',
                 cost: '₹500 (crashpad rental)',
                 image: 'https://images.unsplash.com/photo-1564769662533-4f00a87b4056?w=400&h=200&fit=crop',
                 link: 'https://www.mountainproject.com/area/105835782/the-buttermilks',
@@ -60,14 +60,6 @@ let locations = [
                 cost: '₹1,500 (board rental)',
                 image: 'https://images.unsplash.com/photo-1526188717906-ab4a2f949f48?w=400&h=200&fit=crop',
                 link: 'https://goo.gl/maps/malibu',
-                type: 'activity'
-            },
-            {
-                icon: '🏜️', label: 'Utah Canyon Country',
-                detail: 'Zion narrows, Bryce Canyon hoodoos, or Moab red rock. March weather is perfect.',
-                cost: '₹1,500 (park fees + gas)',
-                image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=400&h=200&fit=crop',
-                link: 'https://www.nps.gov/zion/',
                 type: 'activity'
             },
             {
@@ -88,7 +80,55 @@ let locations = [
             { name: 'Taco trucks (LA)', note: 'Best tacos outside Mexico. Try Mariscos Jalisco. ~₹300', link: 'https://goo.gl/maps/jalisco' },
             { name: 'Schat\'s Bakery (Bishop)', note: 'Famous sheepherder bread. Stop after climbing. ~₹400', link: 'https://goo.gl/maps/schats' }
         ],
-        notes: 'First leg! Climbing in Joshua Tree & Bishop, SUP along the coast. Weed is fully legal in CA.'
+        notes: 'Climbing in Joshua Tree & Bishop, SUP along the coast. Weed is fully legal in CA.'
+    },
+    {
+        id: 'utah',
+        name: 'Utah',
+        type: 'trip',
+        dates: 'Mar 16–19 (TBD)',
+        x: 282, y: 265,
+        supSpot: false,
+        atSection: null,
+        items: [
+            { icon: '🚗', label: 'Drive from Bishop / LA → Utah', cost: '₹2,000 (gas)', detail: 'Bishop → Zion ~6h via US-395 & I-15. LA → Zion ~7h via I-15.', type: 'logistics' },
+            { icon: '🏠', label: 'Accommodation (3 nights)', cost: '₹6,000', detail: 'Hostel or campsite near Springdale (Zion) or Moab', type: 'logistics' },
+            {
+                icon: '🏜️', label: 'Zion Narrows',
+                detail: 'Hike through the slot canyon. Zion narrows is iconic — knee-deep water in March, bring waterproof gear.',
+                cost: '₹500 (park fee)',
+                image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=400&h=200&fit=crop',
+                link: 'https://www.nps.gov/zion/',
+                type: 'activity'
+            },
+            {
+                icon: '🏜️', label: 'Bryce Canyon Hoodoos',
+                detail: 'Sunrise at the hoodoos is magical. Queens Garden + Navajo Loop Trail combo.',
+                cost: '₹500 (park fee)',
+                image: 'https://images.unsplash.com/photo-1559734840-f9509ee5677f?w=400&h=200&fit=crop',
+                link: 'https://www.nps.gov/brca/',
+                type: 'activity'
+            },
+            {
+                icon: '🧗', label: 'Red Rocks Climbing (Las Vegas)',
+                detail: 'World-class sport climbing just 20 min from Las Vegas. Calico Basin, First Pullout, Kraft Boulders. ~270mi / 4h from LA.',
+                cost: '₹1,000 (gear rental + park fee)',
+                image: 'https://images.unsplash.com/photo-1522163182402-834f871fd851?w=400&h=200&fit=crop',
+                link: 'https://www.mountainproject.com/area/105731932/red-rock',
+                type: 'activity'
+            },
+            {
+                icon: '🏜️', label: 'Moab & Arches',
+                detail: 'Red rock country. Delicate Arch at sunset. Mountain biking on Slickrock Trail if you have time.',
+                cost: '₹500 (park fee)',
+                type: 'activity'
+            }
+        ],
+        food: [
+            { name: 'Milt\'s Stop & Eat (Moab)', note: 'Famous buffalo burgers in red rock country. ~₹600', link: null },
+            { name: 'Oscar\'s Café (Springdale)', note: 'Right outside Zion. Huge burritos and shakes. ~₹500', link: null }
+        ],
+        notes: 'Utah canyon country — Zion, Bryce, Moab. Red Rocks climbing is a quick detour via Las Vegas. Weed is illegal in Utah (legal in NV for Red Rocks).'
     },
     {
         id: 'atlanta',
