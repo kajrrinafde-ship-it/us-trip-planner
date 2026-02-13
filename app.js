@@ -7,11 +7,11 @@
 
 let locations = [
     {
-        id: 'california',
-        name: 'California',
+        id: 'los-angeles',
+        name: 'Los Angeles',
         type: 'trip',
         dates: 'Mar 13–16',
-        x: 148, y: 295,
+        x: 155, y: 310,
         supSpot: true,
         atSection: null,
         items: [
@@ -38,6 +38,7 @@ let locations = [
                 type: 'logistics'
             },
             { icon: '🏠', label: 'Accommodation (5 nights)', cost: '₹8,000', detail: 'Hostel in Joshua Tree / Airbnb near Bishop', type: 'logistics' },
+            { icon: '🛋️', label: 'Stay with friends in LA', cost: '₹0 (friend)', detail: 'Possible stays: Mercy, Moni, Shaun, Parth, Sahana — reach out closer to dates.', type: 'logistics' },
             {
                 icon: '🧗', label: 'Rock Climbing — Joshua Tree',
                 detail: 'World-class outdoor bouldering & sport climbing. Hidden Valley, Intersection Rock, Barker Dam area. ~130mi / 2.5h from LA.',
@@ -63,6 +64,28 @@ let locations = [
                 type: 'activity'
             },
             {
+                icon: '🧗', label: 'Climbing Gym Session',
+                detail: 'Hit a local gym with friends — Sender One (LA) or Planet Granite (SF). Bouldering & lead.',
+                cost: '₹1,200 (day pass + rental)',
+                image: 'https://images.unsplash.com/photo-1522163182402-834f871fd851?w=400&h=200&fit=crop',
+                link: 'https://www.senderoneclimbing.com/',
+                type: 'activity'
+            },
+            {
+                icon: '🌴', label: 'Beach Hangs & Sunset',
+                detail: 'Venice Beach, Santa Monica — ask your LA friends for the best spots. Just vibes.',
+                cost: 'Free',
+                image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=200&fit=crop',
+                link: 'https://goo.gl/maps/venice',
+                type: 'activity'
+            },
+            {
+                icon: '🎉', label: 'Party in LA',
+                detail: 'From Ashvin\'s list! Hit up a rooftop bar or club. Ask Mercy, Moni, Shaun for the best spots.',
+                cost: '₹3,000 (drinks + cover)',
+                type: 'activity'
+            },
+            {
                 icon: '🪁', label: 'Kitesurf under Golden Gate Bridge',
                 detail: 'From Ashvin\'s list! Kitesurfing with the Golden Gate as your backdrop. Crissy Field is the launch spot.',
                 cost: '₹3,000 (lesson + rental)',
@@ -78,20 +101,54 @@ let locations = [
         food: [
             { name: 'In-N-Out Burger', note: 'California classic. Animal style fries. ~₹500', link: 'https://www.in-n-out.com/' },
             { name: 'Taco trucks (LA)', note: 'Best tacos outside Mexico. Try Mariscos Jalisco. ~₹300', link: 'https://goo.gl/maps/jalisco' },
-            { name: 'Schat\'s Bakery (Bishop)', note: 'Famous sheepherder bread. Stop after climbing. ~₹400', link: 'https://goo.gl/maps/schats' }
+            { name: 'Schat\'s Bakery (Bishop)', note: 'Famous sheepherder bread. Stop after climbing. ~₹400', link: 'https://goo.gl/maps/schats' },
+            { name: 'Açaí bowls on the beach', note: 'The California cliché that actually slaps. ~₹600', link: null },
+            { name: 'Ask Mercy, Moni, Shaun for recs', note: 'Locals know best! Their go-to spots > any list.', link: null }
         ],
-        notes: 'Climbing in Joshua Tree & Bishop, SUP along the coast. Weed is fully legal in CA.'
+        notes: 'Climbing in Joshua Tree & Bishop, SUP along the coast. Friends in LA: Mercy, Moni, Shaun, Parth, Sahana. Weed is fully legal in CA.'
+    },
+    {
+        id: 'las-vegas',
+        name: 'Las Vegas',
+        type: 'trip',
+        dates: 'Mar 15–17 (TBD)',
+        x: 218, y: 260,
+        supSpot: false,
+        atSection: null,
+        items: [
+            { icon: '🚗', label: 'Drive from LA → Las Vegas', cost: '₹1,500 (gas)', detail: 'LA → LV ~4h via I-15. Easy road trip.', type: 'logistics' },
+            { icon: '🏠', label: 'Accommodation (2 nights)', cost: '₹4,000', detail: 'Hostel on the Strip or Airbnb off-Strip', type: 'logistics' },
+            {
+                icon: '🧗', label: 'Red Rocks Climbing',
+                detail: 'World-class sport climbing just 20 min from the Strip. Calico Basin, First Pullout, Kraft Boulders.',
+                cost: '₹1,000 (gear rental + park fee)',
+                image: 'https://images.unsplash.com/photo-1522163182402-834f871fd851?w=400&h=200&fit=crop',
+                link: 'https://www.mountainproject.com/area/105731932/red-rock',
+                type: 'activity'
+            },
+            {
+                icon: '🎰', label: 'Vegas Strip & Nightlife',
+                detail: 'Walk the Strip, catch a show, hit Fremont Street. Classic Vegas experience.',
+                cost: '₹5,000 (budget)',
+                type: 'activity'
+            }
+        ],
+        food: [
+            { name: 'Heart Attack Grill', note: 'The most Vegas restaurant ever. Novelty burgers on Fremont St. ~₹800', link: null },
+            { name: 'Tacos El Gordo', note: 'Best late-night tacos on the Strip. ~₹400', link: null }
+        ],
+        notes: 'Red Rocks climbing is the main draw — 20 min from the Strip. Weed is fully legal in Nevada.'
     },
     {
         id: 'utah',
         name: 'Utah',
         type: 'trip',
-        dates: 'Mar 16–19 (TBD)',
+        dates: 'Mar 17–19 (TBD)',
         x: 282, y: 265,
         supSpot: false,
         atSection: null,
         items: [
-            { icon: '🚗', label: 'Drive from Bishop / LA → Utah', cost: '₹2,000 (gas)', detail: 'Bishop → Zion ~6h via US-395 & I-15. LA → Zion ~7h via I-15.', type: 'logistics' },
+            { icon: '🚗', label: 'Drive from Las Vegas → Utah', cost: '₹1,500 (gas)', detail: 'LV → Zion ~2.5h via I-15. Quick drive from Vegas.', type: 'logistics' },
             { icon: '🏠', label: 'Accommodation (3 nights)', cost: '₹6,000', detail: 'Hostel or campsite near Springdale (Zion) or Moab', type: 'logistics' },
             {
                 icon: '🏜️', label: 'Zion Narrows',
@@ -109,14 +166,7 @@ let locations = [
                 link: 'https://www.nps.gov/brca/',
                 type: 'activity'
             },
-            {
-                icon: '🧗', label: 'Red Rocks Climbing (Las Vegas)',
-                detail: 'World-class sport climbing just 20 min from Las Vegas. Calico Basin, First Pullout, Kraft Boulders. ~270mi / 4h from LA.',
-                cost: '₹1,000 (gear rental + park fee)',
-                image: 'https://images.unsplash.com/photo-1522163182402-834f871fd851?w=400&h=200&fit=crop',
-                link: 'https://www.mountainproject.com/area/105731932/red-rock',
-                type: 'activity'
-            },
+
             {
                 icon: '🏜️', label: 'Moab & Arches',
                 detail: 'Red rock country. Delicate Arch at sunset. Mountain biking on Slickrock Trail if you have time.',
@@ -128,7 +178,7 @@ let locations = [
             { name: 'Milt\'s Stop & Eat (Moab)', note: 'Famous buffalo burgers in red rock country. ~₹600', link: null },
             { name: 'Oscar\'s Café (Springdale)', note: 'Right outside Zion. Huge burritos and shakes. ~₹500', link: null }
         ],
-        notes: 'Utah canyon country — Zion, Bryce, Moab. Red Rocks climbing is a quick detour via Las Vegas. Weed is illegal in Utah (legal in NV for Red Rocks).'
+        notes: 'Utah canyon country — Zion, Bryce, Moab. Weed is illegal in Utah.'
     },
     {
         id: 'atlanta',
@@ -551,53 +601,6 @@ let locations = [
             { name: 'Philly Cheesesteak', note: '🔥 From Ashvin\'s list! Philly is ~5hrs from Pittsburgh. Day trip for a Pat\'s vs Geno\'s showdown. ~₹600', link: null }
         ],
         notes: 'Crash with Nishant! Pittsburgh has incredible views from Mt. Washington. Harpers Ferry is a doable day trip. ⚠️ Weed is medical-only in Pennsylvania.'
-    },
-    {
-        id: 'california-friends',
-        name: 'California (Mercy & Moni)',
-        type: 'friend',
-        dates: 'Within Mar 13–16',
-        x: 155, y: 315,
-        supSpot: true,
-        atSection: null,
-        items: [
-            { icon: '🏠', label: 'Stay with Mercy & Moni', cost: '₹0 (friend)', type: 'logistics' },
-            {
-                icon: '🧗', label: 'Climbing Gym Session',
-                detail: 'Hit a local gym together — Sender One (LA) or Planet Granite (SF). Bouldering & lead.',
-                cost: '₹1,200 (day pass + rental)',
-                image: 'https://images.unsplash.com/photo-1522163182402-834f871fd851?w=400&h=200&fit=crop',
-                link: 'https://www.senderoneclimbing.com/',
-                type: 'activity'
-            },
-            {
-                icon: '🏄', label: 'SUP with Friends',
-                detail: 'Beach SUP session. 🌿 Legal weed + paddle + sunshine = peak California.',
-                cost: '₹1,500 (rental)',
-                image: 'https://images.unsplash.com/photo-1526188717906-ab4a2f949f48?w=400&h=200&fit=crop',
-                link: 'https://goo.gl/maps/casup',
-                type: 'activity'
-            },
-            {
-                icon: '🌴', label: 'Beach Hangs & Sunset',
-                detail: 'Venice Beach, Santa Monica, or wherever Mercy & Moni take you. Just vibes.',
-                cost: 'Free',
-                image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=200&fit=crop',
-                link: 'https://goo.gl/maps/venice',
-                type: 'activity'
-            },
-            {
-                icon: '🎉', label: 'Party in LA',
-                detail: 'From Ashvin\'s list! Hit up a rooftop bar or club with Mercy & Moni. Ask them for the best spots.',
-                cost: '₹3,000 (drinks + cover)',
-                type: 'activity'
-            }
-        ],
-        food: [
-            { name: 'Whatever Mercy & Moni recommend', note: 'Locals know best! Ask for their go-to spots.', link: null },
-            { name: 'Açaí bowls on the beach', note: 'The California cliché that actually slaps. ~₹600', link: null }
-        ],
-        notes: 'Stay with Mercy & Moni. Climbing, SUP, legal weed — the ultimate friend+adventure combo.'
     }
 ];
 
