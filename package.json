@@ -1,0 +1,12 @@
+{
+  "name": "us-trip-planner",
+  "version": "1.0.0",
+  "description": "US Trip Planner with Notion sync",
+  "scripts": {
+    "sync": "node sync-notion.js"
+  },
+  "dependencies": {
+    "@notionhq/client": "^2.2.15",
+    "dotenv": "^16.4.5"
+  }
+}

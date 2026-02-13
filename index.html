@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Interactive US Trip Planner - March 2026. Climbing, SUP, hiking, art & design across the USA.">
+    <title>US Trip Planner | March 2026</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="nav-icon">✈️</span>
+            <span class="nav-title">US Trip 2026</span>
+        </div>
+        <div class="nav-tabs">
+            <button class="nav-tab active" data-view="map" id="tabMap">🗺️ Map</button>
+            <button class="nav-tab" data-view="flights" id="tabFlights">✈️ Flights</button>
+        </div>
+        <div class="nav-countdown">
+            <div class="mini-countdown">
+                <span id="cd-days">--</span>d
+                <span id="cd-hours">--</span>h
+                <span id="cd-mins">--</span>m
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══ MAP VIEW ═══ -->
+    <div class="view-container active" id="viewMap">
+        <div class="map-container" id="mapContainer">
+            <svg id="usMap" viewBox="80 30 860 500" preserveAspectRatio="xMidYMid meet"></svg>
+
+            <div class="map-legend">
+                <div class="legend-item"><span class="legend-dot trip-dot"></span> Trip Stop</div>
+                <div class="legend-item"><span class="legend-dot wishlist-dot"></span> Wishlist</div>
+                <div class="legend-item"><span class="legend-dot friend-dot"></span> Friend Stay</div>
+                <div class="legend-item"><span class="legend-dot sup-dot"></span> SUP + 420</div>
+                <div class="legend-item"><span class="legend-line at-line"></span> Appalachian Trail</div>
+            </div>
+
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <span class="stat-value">₹1.5L</span>
+                    <span class="stat-label">Budget</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">~4 Weeks</span>
+                    <span class="stat-label">Duration</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="stat-places">0</span>
+                    <span class="stat-label">Places</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">✈️ India↔US</span>
+                    <span class="stat-label">Covered</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ FLIGHTS VIEW ═══ -->
+    <div class="view-container" id="viewFlights">
+        <div class="flights-page">
+            <div class="flights-header">
+                <h1>✈️ Flight Routes</h1>
+                <p class="flights-subtitle">India → USA (covered by work) &nbsp;•&nbsp; Internal US flights are on you
+                </p>
+            </div>
+
+            <!-- Transit visa callout -->
+            <div class="visa-callout">
+                <div class="visa-icon">✅</div>
+                <div class="visa-text">
+                    <strong>Good news!</strong> With a valid US visa, Indian passport holders are
+                    <strong>exempt</strong> from needing a transit visa in both the Netherlands (Schiphol) and Sweden
+                    (Arlanda) — as long as you stay in the international transit zone.
+                </div>
+            </div>
+
+            <h2 class="section-title">🛫 Outbound: India → USA</h2>
+            <p class="section-desc">Your work covers India↔US flights. Here are the routing options:</p>
+            <div class="routes-grid" id="outboundRoutes"></div>
+
+            <h2 class="section-title">🛬 Return: USA → India</h2>
+            <p class="section-desc">Same routing options apply for the return leg:</p>
+            <div class="routes-grid" id="returnRoutes"></div>
+
+            <h2 class="section-title">🇺🇸 Internal US Flights</h2>
+            <p class="section-desc">These are NOT covered. Budget for these yourself.</p>
+            <div class="routes-grid" id="internalRoutes"></div>
+
+            <h2 class="section-title">📋 Transit Requirements Comparison</h2>
+            <div class="transit-table-container">
+                <table class="transit-table">
+                    <thead>
+                        <tr>
+                            <th>Requirement</th>
+                            <th>🇳🇱 Netherlands (AMS)</th>
+                            <th>🇸🇪 Sweden (ARN)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Transit visa needed?</td>
+                            <td class="good">NO — US visa exempts you</td>
+                            <td class="good">NO — US visa exempts you</td>
+                        </tr>
+                        <tr>
+                            <td>Can you leave airport?</td>
+                            <td class="warn">Only with Schengen visa</td>
+                            <td class="warn">Only with Schengen visa</td>
+                        </tr>
+                        <tr>
+                            <td>Overnight layover?</td>
+                            <td class="good">OK in transit zone if no terminal change</td>
+                            <td class="warn">May need Schengen visa</td>
+                        </tr>
+                        <tr>
+                            <td>Baggage re-check?</td>
+                            <td class="info">Usually through-checked on KLM</td>
+                            <td class="info">Usually through-checked on SAS</td>
+                        </tr>
+                        <tr>
+                            <td>Main airlines</td>
+                            <td>KLM, Delta (SkyTeam)</td>
+                            <td>SAS, Lufthansa (Star Alliance)</td>
+                        </tr>
+                        <tr>
+                            <td>Typical layover</td>
+                            <td>2–4 hours</td>
+                            <td>2–5 hours</td>
+                        </tr>
+                        <tr>
+                            <td>Airport lounges</td>
+                            <td class="good">Excellent (KLM Crown Lounge)</td>
+                            <td class="good">Good (SAS Gold Lounge)</td>
+                        </tr>
+                        <tr>
+                            <td>If you want to explore the city</td>
+                            <td class="warn">Need Schengen visa (~₹6,500 / €80)</td>
+                            <td class="warn">Need Schengen visa (~₹6,500 / €80)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="flights-tip">
+                <span class="tip-icon">💡</span>
+                <span>If you want to actually explore Amsterdam or Stockholm during a long layover, you'd need a
+                    short-stay Schengen visa (Type C). Apply at VFS Global, ~15-45 day processing. Otherwise, just stay
+                    in the transit zone — no visa needed!</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detail Panel -->
+    <div class="detail-panel" id="detailPanel">
+        <button class="panel-close" id="panelClose">&times;</button>
+        <div class="panel-header">
+            <span class="panel-badge" id="panelBadge">Trip Stop</span>
+            <h2 class="panel-title" id="panelTitle">--</h2>
+            <p class="panel-dates" id="panelDates">--</p>
+        </div>
+        <div class="panel-body">
+            <div class="panel-section">
+                <h3>🎯 Plan</h3>
+                <div class="items-list" id="panelItems"></div>
+            </div>
+            <div class="panel-section" id="panelFoodSection">
+                <h3>🍽️ Must-Eat</h3>
+                <div class="food-list" id="panelFood"></div>
+            </div>
+            <div class="panel-section" id="panelNotesSection">
+                <h3>📝 Notes</h3>
+                <p class="panel-notes" id="panelNotes"></p>
+            </div>
+            <div class="panel-section" id="panelATSection" style="display:none">
+                <h3>🥾 Nearby AT Section</h3>
+                <p class="panel-notes" id="panelAT"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-overlay" id="panelOverlay"></div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
