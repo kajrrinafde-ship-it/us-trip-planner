@@ -832,70 +832,132 @@ function showDetail(loc) {
     badge.className = 'panel-badge';
     if (loc.type === 'wishlist') badge.classList.add('wishlist');
     if (loc.type === 'friend') badge.classList.add('friend');
-
     if (loc.type === 'work') badge.classList.add('work');
 
     document.getElementById('panelTitle').textContent = loc.name;
     document.getElementById('panelDates').textContent = loc.dates;
 
-    // Build items list (activities + logistics with inline costs)
-    const itemsContainer = document.getElementById('panelItems');
-    itemsContainer.innerHTML = '';
-
-    loc.items.forEach(item => {
-        const card = document.createElement('div');
-        card.className = `item-card ${item.type}`;
-
-        let html = '';
-
-        // Image (only for activities)
-        if (item.image) {
-            html += `<div class="item-image"><img src="${item.image}" alt="${item.label}" loading="lazy" /></div>`;
-        }
-
-        html += `<div class="item-content">`;
-        html += `<div class="item-header">`;
-        html += `<span class="item-icon">${item.icon}</span>`;
-        html += `<span class="item-name">${item.label}</span>`;
-        if (item.cost) {
-            html += `<span class="item-cost">${item.cost}</span>`;
-        }
-        html += `</div>`;
-
-        if (item.detail) {
-            html += `<p class="item-detail">${item.detail}</p>`;
-        }
-
-        if (item.link) {
-            html += `<a href="${item.link}" target="_blank" rel="noopener" class="item-link">View details →</a>`;
-        }
-
-        html += `</div>`;
-        card.innerHTML = html;
-        itemsContainer.appendChild(card);
-    });
-
-    // Food section
-    const foodContainer = document.getElementById('panelFood');
-    const foodSection = document.getElementById('panelFoodSection');
-    foodContainer.innerHTML = '';
-
-    if (loc.food && loc.food.length) {
-        foodSection.style.display = 'block';
-        loc.food.forEach(f => {
-            const foodCard = document.createElement('div');
-            foodCard.className = 'food-card';
-            let fHtml = `<span class="food-name">${f.name}</span>`;
-            fHtml += `<span class="food-note">${f.note}</span>`;
-            if (f.link) {
-                fHtml += `<a href="${f.link}" target="_blank" rel="noopener" class="item-link">Map →</a>`;
-            }
-            foodCard.innerHTML = fHtml;
-            foodContainer.appendChild(foodCard);
-        });
-    } else {
-        foodSection.style.display = 'none';
+    // ─── Categorize items ────────────────────────────────────────────────
+    function categorize(item) {
+        const label = (item.label || '').toLowerCase();
+        const icon = item.icon || '';
+        // Stay: flights, accommodation, transport, logistics
+        if (item.type === 'logistics') return 'stay';
+        // Climbing
+        if (icon === '🧗' || label.includes('climb') || label.includes('boulder')) return 'climbing';
+        // Music
+        if (icon === '🎵' || icon === '🎶' || label.includes('music') || label.includes('concert')
+            || label.includes('broadway') || label.includes('festival')) return 'music';
+        // SUP / water activity — goes to activities
+        return 'activities';
     }
+
+    const tabDefs = [
+        { id: 'stay', label: '🏠 Stay', items: [] },
+        { id: 'food', label: '🍽️ Food', items: [] },
+        { id: 'climbing', label: '🧗 Climbing', items: [] },
+        { id: 'music', label: '🎵 Music', items: [] },
+        { id: 'activities', label: '🎯 Activities', items: [] }
+    ];
+    const tabMap = {};
+    tabDefs.forEach(t => tabMap[t.id] = t);
+
+    // Categorize items
+    if (loc.items) {
+        loc.items.forEach(item => {
+            const cat = categorize(item);
+            tabMap[cat].items.push({ kind: 'item', data: item });
+        });
+    }
+
+    // Add food items
+    if (loc.food && loc.food.length) {
+        loc.food.forEach(f => {
+            tabMap.food.items.push({ kind: 'food', data: f });
+        });
+    }
+
+    // Filter to only tabs with content
+    const activeTabs = tabDefs.filter(t => t.items.length > 0);
+
+    // ─── Build tab bar ───────────────────────────────────────────────────
+    const tabsContainer = document.getElementById('panelTabs');
+    const tabContent = document.getElementById('tabContent');
+    tabsContainer.innerHTML = '';
+    tabContent.innerHTML = '';
+
+    activeTabs.forEach((tab, idx) => {
+        // Tab button
+        const btn = document.createElement('button');
+        btn.className = 'panel-tab' + (idx === 0 ? ' active' : '');
+        btn.setAttribute('data-tab', tab.id);
+        btn.innerHTML = `${tab.label} <span class="tab-count">${tab.items.length}</span>`;
+        tabsContainer.appendChild(btn);
+
+        // Tab pane
+        const pane = document.createElement('div');
+        pane.className = 'tab-pane' + (idx === 0 ? ' active' : '');
+        pane.id = 'tabPane-' + tab.id;
+
+        const list = document.createElement('div');
+        list.className = tab.id === 'food' ? 'food-list' : 'items-list';
+
+        tab.items.forEach(entry => {
+            if (entry.kind === 'food') {
+                const f = entry.data;
+                const foodCard = document.createElement('div');
+                foodCard.className = 'food-card';
+                let fHtml = `<span class="food-name">${f.name}</span>`;
+                fHtml += `<span class="food-note">${f.note}</span>`;
+                if (f.link) {
+                    fHtml += `<a href="${f.link}" target="_blank" rel="noopener" class="item-link">Map →</a>`;
+                }
+                foodCard.innerHTML = fHtml;
+                list.appendChild(foodCard);
+            } else {
+                const item = entry.data;
+                const card = document.createElement('div');
+                card.className = `item-card ${item.type}`;
+
+                let html = '';
+                if (item.image) {
+                    html += `<div class="item-image"><img src="${item.image}" alt="${item.label}" loading="lazy" /></div>`;
+                }
+
+                html += `<div class="item-content">`;
+                html += `<div class="item-header">`;
+                html += `<span class="item-icon">${item.icon}</span>`;
+                html += `<span class="item-name">${item.label}</span>`;
+                if (item.cost) {
+                    html += `<span class="item-cost">${item.cost}</span>`;
+                }
+                html += `</div>`;
+
+                if (item.detail) {
+                    html += `<p class="item-detail">${item.detail}</p>`;
+                }
+
+                if (item.link) {
+                    html += `<a href="${item.link}" target="_blank" rel="noopener" class="item-link">View details →</a>`;
+                }
+
+                html += `</div>`;
+                card.innerHTML = html;
+                list.appendChild(card);
+            }
+        });
+
+        pane.appendChild(list);
+        tabContent.appendChild(pane);
+
+        // Tab click handler
+        btn.addEventListener('click', () => {
+            tabsContainer.querySelectorAll('.panel-tab').forEach(b => b.classList.remove('active'));
+            tabContent.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+            btn.classList.add('active');
+            pane.classList.add('active');
+        });
+    });
 
     // Notes
     const notesP = document.getElementById('panelNotes');
