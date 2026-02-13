@@ -18,7 +18,7 @@ let locations = [
             { icon: '✈️', label: 'Flight to LA', cost: '₹0 (covered)', type: 'logistics' },
             {
                 icon: '🚗', label: 'LAX → Joshua Tree: Rental Car (Best)',
-                detail: '~2.5 hrs via I-10 E. Most flexible — you'll need a car in the park anyway.Avoid LA rush hour.Carry offline maps, no signal in the park.',
+                detail: "~2.5 hrs via I-10 E. Most flexible — you'll need a car in the park anyway. Avoid LA rush hour. Carry offline maps, no signal in the park.",
                 cost: '₹2,500–4,000/day (rental + gas ~₹800)',
                 link: 'https://www.kayak.com/cars/Los-Angeles,California,United-States-c1596/2026-03-05/2026-03-15',
                 type: 'logistics'
