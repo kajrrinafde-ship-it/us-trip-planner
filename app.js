@@ -130,7 +130,7 @@ let locations = [
             { name: 'Ponce City Market', note: 'Food hall with 20+ vendors. Rooftop has skyline views. ~₹600', link: 'https://poncecitymarket.com/' },
             { name: 'Waffle House', note: 'Open 24/7 — it\'s an Atlanta institution. Get scattered & smothered. ~₹300', link: 'https://www.wafflehouse.com/' }
         ],
-        notes: 'Work week base. High Museum is a must. Springer Mountain is an easy weekend day trip.'
+        notes: 'Work week base. High Museum is a must. Springer Mountain is an easy weekend day trip. 🚫 Weed is illegal in Georgia.'
     },
     {
         id: 'chicago',
@@ -223,13 +223,19 @@ let locations = [
                 detail: 'From Ashvin\'s list! Cache Creek or Game Creek trails near Jackson Hole. March may be snowy — check conditions.',
                 cost: '₹1,500 (bike rental)',
                 type: 'activity'
+            },
+            {
+                icon: '🏄', label: 'SUP — Jenny Lake',
+                detail: 'Paddle across Jenny Lake with the Tetons towering above. March may be frozen — check conditions. Kayak rentals available in summer.',
+                cost: '₹1,500 (rental)',
+                type: 'activity'
             }
         ],
         food: [
             { name: 'Persephone Bakery (Jackson)', note: 'Sourdough & pastries. Perfect before a hike. ~₹600', link: 'https://www.persephonebakery.com/' },
             { name: 'Snake River Brewing', note: 'Award-winning craft beer. Try the Zonker Stout. ~₹700', link: 'https://snakeriverbrewing.com/' }
         ],
-        notes: 'March will have snow — stunning views but pack warm layers.'
+        notes: 'March will have snow — stunning views but pack warm layers. 🚫 Weed is illegal in Wyoming.'
     },
     {
         id: 'antelope-canyon',
@@ -270,7 +276,7 @@ let locations = [
             { name: 'Big John\'s Texas BBQ (Page)', note: 'Surprisingly great BBQ in the desert. Brisket plate. ~₹700', link: 'https://goo.gl/maps/bigjohns' },
             { name: 'Slackers (Page)', note: 'Burgers & craft beer with canyon vibes. ~₹600', link: 'https://goo.gl/maps/slackers' }
         ],
-        notes: 'Book Antelope Canyon tours in advance — they fill up fast. Horseshoe Bend is a 10 min drive.'
+        notes: 'Book Antelope Canyon tours in advance — they fill up fast. Horseshoe Bend is a 10 min drive. ✅ Weed is legal (recreational) in Arizona.'
     },
     {
         id: 'captiva-island',
@@ -397,6 +403,13 @@ let locations = [
                 image: 'https://images.unsplash.com/photo-1503095396549-807759245b35?w=400&h=200&fit=crop',
                 link: 'https://www.broadway.com/',
                 type: 'activity'
+            },
+            {
+                icon: '🏄', label: 'SUP — Hudson River',
+                detail: 'Paddle the Hudson with the NYC skyline as your backdrop. Manhattan Kayak + SUP offers sessions from Pier 84.',
+                cost: '₹2,000 (rental)',
+                link: 'https://www.manhattankayak.com/',
+                type: 'activity'
             }
         ],
         food: [
@@ -497,7 +510,7 @@ let locations = [
             { name: 'Pamela\'s Diner', note: 'Famous crepe-style pancakes. Cash only. Obama approved. ~₹400', link: 'https://pamelasdiner.com/' },
             { name: 'Philly Cheesesteak', note: '🔥 From Ashvin\'s list! Philly is ~5hrs from Pittsburgh. Day trip for a Pat\'s vs Geno\'s showdown. ~₹600', link: null }
         ],
-        notes: 'Crash with Nishant! Pittsburgh has incredible views from Mt. Washington. Harpers Ferry is a doable day trip.'
+        notes: 'Crash with Nishant! Pittsburgh has incredible views from Mt. Washington. Harpers Ferry is a doable day trip. ⚠️ Weed is medical-only in Pennsylvania.'
     },
     {
         id: 'california-friends',
@@ -751,7 +764,6 @@ function renderMap() {
         let colorClass = 'pin-trip';
         if (loc.type === 'wishlist') colorClass = 'pin-wishlist';
         if (loc.type === 'friend') colorClass = 'pin-friend';
-        if (loc.supSpot) colorClass = 'pin-sup';
 
         // Glow
         const glow = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
@@ -798,17 +810,6 @@ function renderMap() {
         dateLabel.textContent = loc.dates;
         g.appendChild(dateLabel);
 
-        // SUP+420 emoji
-        if (loc.supSpot) {
-            const sup = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-            sup.setAttribute('x', loc.x + 14);
-            sup.setAttribute('y', loc.y + 4);
-            sup.setAttribute('class', 'pin-date-label');
-            sup.setAttribute('fill', '#f472b6');
-            sup.setAttribute('font-size', '7');
-            sup.textContent = '🏄🌿';
-            g.appendChild(sup);
-        }
 
         g.addEventListener('click', () => showDetail(loc));
         pinsGroup.appendChild(g);
@@ -827,11 +828,11 @@ function showDetail(loc) {
 
     // Badge
     const badge = document.getElementById('panelBadge');
-    badge.textContent = getBadgeText(loc.type, loc.supSpot);
+    badge.textContent = getBadgeText(loc.type);
     badge.className = 'panel-badge';
     if (loc.type === 'wishlist') badge.classList.add('wishlist');
     if (loc.type === 'friend') badge.classList.add('friend');
-    if (loc.supSpot) badge.classList.add('sup');
+
     if (loc.type === 'work') badge.classList.add('work');
 
     document.getElementById('panelTitle').textContent = loc.name;
@@ -926,8 +927,7 @@ function closePanel() {
     document.getElementById('panelOverlay').classList.remove('active');
 }
 
-function getBadgeText(type, supSpot) {
-    if (supSpot) return '🏄 SUP + 🌿 420';
+function getBadgeText(type) {
     switch (type) {
         case 'trip': return 'Trip Stop';
         case 'work': return 'Work Week';
