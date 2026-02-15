@@ -685,6 +685,9 @@ function renderMap() {
             <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
             <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
         </filter>
+        <pattern id="satelliteTexture" patternUnits="userSpaceOnUse" width="1000" height="600">
+            <image href="assets/satellite-map.png" x="0" y="0" width="1000" height="600" preserveAspectRatio="xMidYMid slice"/>
+        </pattern>
     `;
     svg.appendChild(defs);
 
@@ -696,6 +699,7 @@ function renderMap() {
         path.setAttribute('d', state.d);
         path.setAttribute('class', 'state-path');
         path.setAttribute('data-state', state.id);
+        path.setAttribute('fill', 'url(#satelliteTexture)'); // Apply texture
         statesGroup.appendChild(path);
     });
     svg.appendChild(statesGroup);
