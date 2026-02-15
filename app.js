@@ -102,8 +102,8 @@ let locations = [
             { name: 'In-N-Out Burger', note: 'California classic. Animal style fries. ~₹500', link: 'https://www.in-n-out.com/' },
             { name: 'Taco trucks (LA)', note: 'Best tacos outside Mexico. Try Mariscos Jalisco. ~₹300', link: 'https://goo.gl/maps/jalisco' },
             { name: 'Schat\'s Bakery (Bishop)', note: 'Famous sheepherder bread. Stop after climbing. ~₹400', link: 'https://goo.gl/maps/schats' },
-            { name: 'Açaí bowls on the beach', note: 'The California cliché that actually slaps. ~₹600', link: null },
-            { name: 'Ask Mercy, Moni, Shaun for recs', note: 'Locals know best! Their go-to spots > any list.', link: null }
+            { name: 'Badmaash (Indian)', note: 'Super hip Indian gastropub in DTLA/Fairfax. Butter Chicken Samosas! ~₹1,500', link: 'https://www.badmaashla.com/' },
+            { name: 'Mayura (Indian)', note: 'Authentic Kerala cuisine near Venice date. Michelin recommended. ~₹1,000', link: 'https://mayurala.com/' }
         ],
         notes: 'Climbing in Joshua Tree & Bishop, SUP along the coast. Friends in LA: Mercy, Moni, Shaun, Parth, Sahana. Weed is fully legal in CA.'
     },
@@ -135,7 +135,8 @@ let locations = [
         ],
         food: [
             { name: 'Heart Attack Grill', note: 'The most Vegas restaurant ever. Novelty burgers on Fremont St. ~₹800', link: null },
-            { name: 'Tacos El Gordo', note: 'Best late-night tacos on the Strip. ~₹400', link: null }
+            { name: 'Tacos El Gordo', note: 'Best late-night tacos on the Strip. ~₹400', link: null },
+            { name: 'Mint Indian Bistro', note: 'Great buffet and vast menu near the strip. ~₹1,200', link: 'https://mintbistro.com/' }
         ],
         notes: 'Red Rocks climbing is the main draw — 20 min from the Strip. Weed is fully legal in Nevada.'
     },
@@ -218,7 +219,11 @@ let locations = [
         food: [
             { name: 'Fox Bros. Bar-B-Q', note: 'Best pulled pork in Atlanta. Massive portions. ~₹800', link: 'https://foxbrosbbq.com/' },
             { name: 'Ponce City Market', note: 'Food hall with 20+ vendors. Rooftop has skyline views. ~₹600', link: 'https://poncecitymarket.com/' },
-            { name: 'Waffle House', note: 'Open 24/7 — it\'s an Atlanta institution. Get scattered & smothered. ~₹300', link: 'https://www.wafflehouse.com/' }
+            { name: 'Waffle House', note: 'Open 24/7 — it\'s an Atlanta institution. Get scattered & smothered. ~₹300', link: 'https://www.wafflehouse.com/' },
+            { name: 'Botiwalla (Indian)', note: 'Irani cafe style street food. SPDP and lamb burgers. ~₹900', link: 'https://botiwalla.com/' },
+            { name: 'Chai Pani (Indian)', note: 'James Beard winner. Bombay street snacks. Matchstick Okra fries! ~₹1,000', link: 'https://chaipani.com/' },
+            { name: 'Zyka (Indian)', note: 'The gold standard for Hyderabadi Biryani & Chicken 65. ~₹800', link: 'https://zyka.com/' },
+            { name: 'Madras Mantra (Indian)', note: 'Fantastic vegetarian South Indian. Dosas are huge. ~₹900', link: 'https://madrasmantra.com/' }
         ],
         notes: 'Work week base. High Museum is a must. Springer Mountain is an easy weekend day trip. 🚫 Weed is illegal in Georgia.'
     },
@@ -266,10 +271,13 @@ let locations = [
             }
         ],
         food: [
-            { name: 'Deep Dish Pizza (Lou Malnati\'s)', note: '🔥 From Ashvin\'s list! THE Chicago food. Buttery crust, chunky tomato sauce. ~₹900', link: 'https://www.loumalnatis.com/' },
+            { name: 'Deep Dish (Lou Malnati\'s)', note: '🔥 From Ashvin\'s list! THE Chicago food. Buttery crust. ~₹900', link: 'https://www.loumalnatis.com/' },
             { name: 'Italian Beef (Al\'s #1)', note: 'Dipped, with hot giardiniera. Messy and perfect. ~₹500', link: 'https://www.alsbeef.com/' },
             { name: 'Garrett Popcorn', note: 'Chicago Mix (caramel + cheese). Buy a bag for the road. ~₹400', link: 'https://www.garrettpopcorn.com/' },
-            { name: 'Benihana', note: '🔥 From Ashvin\'s list! Teppanyaki dinner — the onion volcano, fried rice toss, the whole show. ~₹2,000', link: 'https://www.benihana.com/' }
+            { name: 'Benihana', note: '🔥 From Ashvin\'s list! Teppanyaki dinner — the onion volcano show. ~₹2,000', link: 'https://www.benihana.com/' },
+            { name: 'ROOH (Indian)', note: 'Progressive Indian fine dining. Incredible cocktails & modern plates. ~₹3,000', link: 'https://www.roohchicago.com/' },
+            { name: 'Ghareeb Nawaz (Indian)', note: 'Devon Ave legend. Huge portions of biryani for very cheap. ~₹500', link: 'https://ghareebnawazonline.com/' },
+            { name: 'Thattu (Indian)', note: 'Authentic Kerala street food. Spicy and flavorful. ~₹1,200', link: 'https://www.thattu.com/' }
         ],
         notes: 'St. Patrick\'s in Chicago is legendary. Weed is legal. SUP on Lake Michigan is a vibe.'
     },
@@ -505,8 +513,8 @@ let locations = [
         food: [
             { name: 'Joe\'s Pizza (Greenwich Village)', note: 'The quintessential NYC slice. Thin, floppy, perfect. ~₹300', link: 'https://www.joespizzanyc.com/' },
             { name: 'Halal Guys (53rd & 6th)', note: 'Legendary street cart. Chicken & gyro platter with white sauce. ~₹500', link: 'https://thehalalguys.com/' },
-            { name: 'Los Tacos No. 1 (Chelsea Market)', note: 'Best tacos in NYC. Adobada is incredible. ~₹400', link: 'https://lostacos1.com/' },
-            { name: 'Lobster Rolls', note: '🔥 From Ashvin\'s list! Luke\'s Lobster or Burger & Lobster. Cold Maine-style or warm Connecticut-style. ~₹1,200', link: 'https://lukeslobster.com/' }
+            { name: 'Dhamaka (Indian)', note: 'Unapologetic "forgotten side of India" food. Explosive flavors. LES. ~₹2,500', link: 'https://www.dhamaka.nyc/' },
+            { name: 'Semma (Indian)', note: 'Michelin-starred South Indian. Get the Gunpowder Dosa. West Village. ~₹3,000', link: 'https://www.semma.nyc/' }
         ],
         notes: 'NYC is expensive but worth it. Weed is legal. Bear Mountain AT section is just 1hr north.'
     },
@@ -554,9 +562,8 @@ let locations = [
         food: [
             { name: 'Pecan Lodge (Deep Ellum)', note: 'Top-3 BBQ in Texas. Brisket, burnt ends, ribs. Be ready to wait. ~₹1,000', link: 'https://pecanlodge.com/' },
             { name: 'Velvet Taco', note: 'Creative tacos — try the Spicy Tikka Chicken. Late-night menu. ~₹500', link: 'https://www.velvettaco.com/' },
-            { name: 'Whataburger', note: 'Texas fast food royalty. Honey butter chicken biscuit at 2am. ~₹300', link: 'https://www.whataburger.com/' },
-            { name: 'Chimichanga', note: '🔥 From Ashvin\'s list! Deep-fried burrito perfection. Tex-Mex at its finest. ~₹500', link: null },
-            { name: 'Bacon Milkshake', note: '🔥 From Ashvin\'s list! Try Jack in the Box or a local diner. Sweet + salty insanity. ~₹400', link: null }
+            { name: 'Kalachandji\'s (Indian)', note: 'Famous vegetarian buffet inside a temple garden. Unique vibe. ~₹1,000', link: 'https://www.kalachandjis.com/' },
+            { name: 'Bawarchi Biryani Point', note: 'Solid Hyderabadi biryani chain. Spicy and consistent. ~₹800', link: 'https://bawarchibiryanipoint.com/' }
         ],
         notes: 'Quick 1-2 day stop. Great food and culture. Weed is NOT legal in Texas.'
     },
